@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvLat"
+        android:layout_width="359dp"
+        android:layout_height="35dp"
+        android:gravity="left"
+        android:text="Latitude : "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tvLong"
+        android:layout_width="359dp"
+        android:layout_height="35dp"
+        android:gravity="left"
+        android:text="Longitude : "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tvPress"
+        android:layout_width="359dp"
+        android:layout_height="35dp"
+        android:gravity="left"
+        android:text="Pressure : "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tvIP"
+        android:layout_width="356dp"
+        android:layout_height="35dp"
+        android:gravity="left"
+        android:text="Ip Address : "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tvLight"
+        android:layout_width="360dp"
+        android:layout_height="35dp"
+        android:gravity="left"
+        android:text="Ambient Light Sensor : "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tvAccelero"
+        android:layout_width="360dp"
+        android:layout_height="120dp"
+        android:gravity="left"
+        android:text="Accelerometer : "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tvGyro"
+        android:layout_width="360dp"
+        android:layout_height="120dp"
+        android:gravity="left"
+        android:text="GyroScope : "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+    <TextView
+        android:id="@+id/tvDown"
+        android:layout_width="360dp"
+        android:layout_height="35dp"
+        android:gravity="left"
+        android:text="Volume Down : Press Vol Down"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+    <TextView
+        android:id="@+id/tvUp"
+        android:layout_width="360dp"
+        android:layout_height="35dp"
+        android:gravity="left"
+        android:text="Volume Up : Press Vol Up "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+    <TextView
+        android:id="@+id/tvPower"
+        android:layout_width="360dp"
+        android:layout_height="35dp"
+        android:gravity="left"
+        android:text="Power Button : "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+</LinearLayout>
