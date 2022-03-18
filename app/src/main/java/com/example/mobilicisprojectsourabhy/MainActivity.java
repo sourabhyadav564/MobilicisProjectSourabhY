@@ -1,14 +1,20 @@
 package com.example.mobilicisprojectsourabhy;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -17,12 +23,25 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.location.LocationRequest;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.KeyEvent;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+
+import java.math.BigInteger;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.security.Permission;
+import java.util.Formatter;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     LocationManager locationManager;
@@ -38,10 +57,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (grantResults[0] > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 0, locationListener);
-            }
-            else{
-                tvLat.setText("Enable");
-                tvLong.setText("Enable");
             }
         }
 
@@ -150,15 +165,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void GetIpAddress() {
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        String ipAddress = String.valueOf(wifiManager.getConnectionInfo().getIpAddress());
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        byte[] ipAddress = BigInteger.valueOf(wifiInfo.getIpAddress()).toByteArray();
+        InetAddress inetAddress = null;
         try {
-            if (ipAddress != null) {
-                tvIP.setText("Ip Address : " + ipAddress);
-            } else
-                tvIP.setText("Connect to Wi-Fi");
-        } catch (Exception e) {
+            inetAddress = InetAddress.getByAddress(ipAddress);
+        } catch (UnknownHostException e) {
             e.printStackTrace();
         }
+        String myIP = inetAddress.getHostAddress();
+
+        if (myIP != null) {
+            tvIP.setText("Ip Address : " + myIP);
+        } else
+            tvIP.setText("Connect to Wi-Fi");
     }
 
     @Override
@@ -172,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
         if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
-            Toast.makeText(this, "working", Toast.LENGTH_SHORT).show();
             tvPress.setText(event.values[0] + "");
         }
 
